@@ -10,23 +10,23 @@ import Home from './components/Home';
 const deliveryData = [
   {
     name: '맥북 케이스',
-    carrier: 'kr.cjlogistics',
-    track: 626295097001,
+    carrierID: 'kr.cjlogistics',
+    trackID: 626295097001,
   },
   {
     name: '얼라이브 멀티 30정',
-    carrier: 'kr.hanjin',
-    track: 415995868536,
+    carrierID: 'kr.hanjin',
+    trackID: 415995868536,
   },
   {
     name: '리코스 나쵸칩',
-    carrier: 'kr.cjlogistics',
-    track: 354471090912,
+    carrierID: 'kr.cjlogistics',
+    trackID: 354471090912,
   },
 ];
 
 function App() {
-  function Footer({ children }) {
+  function Footer() {
     const Container = styled.div`
       display: flex;
       flex-direction: column;
@@ -34,7 +34,7 @@ function App() {
       padding-top: 0.5rem;
       padding-bottom: 2rem;
     `;
-    const Text = styled.p`
+    const Text = styled.span`
       color: rgba(0, 0, 0, 0.9);
       font-size: 0.7rem;
       font-weight: 700;
@@ -50,6 +50,7 @@ function App() {
         font-size: 0.6rem;
         font-weight: 500;
         margin-top: 3px;
+        text-align: center;
       }
     `;
 
@@ -65,7 +66,15 @@ function App() {
             @junhoyeo
           </a>
         </Text>
-        <Text>{children}</Text>
+        <Text>
+          API powered by&nbsp;
+          <a href="https://tracker.delivery/guide" title="delivery-tracker">Delivery Tracker</a>
+          <br />
+          Icons made by&nbsp;
+          <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a>
+          &nbsp;from&nbsp;
+          <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </Text>
       </Container>
     );
   }
@@ -78,12 +87,7 @@ function App() {
         <CardList>
           {deliveryData.map((delivery, idx) => <CardItem delivery={delivery} key={`delivery-${idx + 1}`} />)}
         </CardList>
-        <Footer>
-          Icons made by&nbsp;
-          <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a>
-          &nbsp;from&nbsp;
-          <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-        </Footer>
+        <Footer />
       </Home>
     </>
   );

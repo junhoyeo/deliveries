@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Timeline from './Timeline';
 import StatusIllust from './StatusIllust';
 
+import getTrack from '../utils/getTrack';
+
 const imageContext = require.context('../assets/carriers/', true);
 
 const Container = styled.div`
@@ -87,12 +89,6 @@ const AbsoluteLabel = styled.div`
   box-shadow: 2px 13px 30px -10px rgba(41, 41, 41, 0.3);
 `;
 
-const exampleDeliveryData = {
-  from: { name: '립*', time: '2019-11-02T08:14:23+09:00' },
-  to: { name: '여*', time: null },
-  state: { id: 'in_transit', text: '상품이동중' },
-};
-
 export default class CardItem extends Component {
   constructor(props) {
     super(props);
@@ -105,15 +101,21 @@ export default class CardItem extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      delivery: exampleDeliveryData,
-    });
+    const { delivery: { carrierID, trackID } } = this.props;
+
+    getTrack(carrierID, trackID)
+      .then((res) => {
+        const { data } = res;
+        this.setState({
+          delivery: data,
+        });
+      });
   }
 
   render() {
-    const { delivery: { name, carrier, track } } = this.props;
+    const { delivery: { name, carrierID, trackID } } = this.props;
     const { delivery: { from, to, state } } = this.state;
-    const carrierImg = imageContext(`./${carrier}.png`);
+    const carrierImg = imageContext(`./${carrierID}.png`);
     return (
       <Container>
         <LeftSection>
@@ -123,7 +125,7 @@ export default class CardItem extends Component {
             </ImageWrap>
             <Info>
               <Name>{name}</Name>
-              <Track>{track}</Track>
+              <Track>{trackID}</Track>
             </Info>
           </InfoWrap>
           <Timeline from={from} to={to} />

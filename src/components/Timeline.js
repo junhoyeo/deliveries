@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ArrowIcon from '../assets/icons/long-arrow-alt-right-solid.svg';
-
 import useConstant from '../utils/useConstant';
+
+import ArrowIcon from '../assets/icons/long-arrow-alt-right-solid.svg';
 
 const Item = ({ data: { name = '', time = '' }, type }) => {
   const Container = useConstant(() => styled.div`

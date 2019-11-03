@@ -1,0 +1,27 @@
+[
+  {
+    "id": "information_received",
+    "illust": "box",
+    "text": "상품준비중"
+  },
+  {
+    "id": "at_pickup",
+    "illust": "trolley",
+    "text": "상품인수"
+  },
+  {
+    "id": "in_transit",
+    "illust": "truck",
+    "text": "상품이동중"
+  },
+  {
+    "id": "out_for_delivery",
+    "illust": "scooter",
+    "text": "배송출발"
+  },
+  {
+    "id": "delivered",
+    "illust": "package",
+    "text": "배달완료"
+  }
+]

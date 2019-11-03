@@ -3,39 +3,11 @@ import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
-const illustData = [
-  {
-    id: 'information_received',
-    name: 'box',
-    text: '상품준비중',
-    color: true,
-  },
-  {
-    id: 'at_pickup',
-    name: 'trolley',
-    text: '상품인수',
-    color: true,
-  },
-  {
-    id: 'in_transit',
-    name: 'truck',
-    text: '상품이동중',
-    color: true,
-  },
-  {
-    id: 'out_for_delivery',
-    name: 'scooter',
-    text: '배송출발',
-  },
-  {
-    id: 'delivered',
-    name: 'package',
-    text: '배달완료',
-  },
-];
+import trackData from '../data/tracks.json';
 
 const illustDefaultCtx = require.context('../assets/illusts/defaults', true);
 const illustColorCtx = require.context('../assets/illusts/colors', true);
+const trackStates = trackData.map((track) => track.id);
 
 export default function StatusIllust({ stateID }) {
   const Wrap = useConstant(() => styled.div`
@@ -49,8 +21,7 @@ export default function StatusIllust({ stateID }) {
     justify-content: space-around;
     align-items: center;
   `);
-  function Illust({ illust }) {
-    const { color } = illust;
+  function Illust({ track }) {
     const IllustWrap = useConstant(() => styled.div`
       height: 100%;
       display: flex;
@@ -86,22 +57,23 @@ export default function StatusIllust({ stateID }) {
       margin-top: 0.5rem;
       font-size: 0.9rem;
       font-weight: 700;
-      color: ${stateID === illust.id ? 'rgb(212, 5, 17)' : 'rgba(0, 0, 0, 0.9)'};
+      color: ${stateID === track.id ? 'rgb(212, 5, 17)' : 'rgba(0, 0, 0, 0.9)'};
     `);
-    const IllustCtx = (color) ? illustColorCtx : illustDefaultCtx;
-    const IllustImg = IllustCtx(`./${illust.name}.svg`);
+    const IllustCtx = (trackStates.indexOf(stateID) >= trackStates.indexOf(track.id))
+      ? illustColorCtx : illustDefaultCtx;
+    const IllustImg = IllustCtx(`./${track.illust}.svg`);
 
     return (
       <IllustWrap>
         <Image src={IllustImg} />
-        <Text>{illust.text}</Text>
+        <Text>{track.text}</Text>
       </IllustWrap>
     );
   }
   return (
     <Wrap>
       <Container>
-        {illustData.map((illust, idx) => <Illust illust={illust} key={`illust-${idx + 1}`} />)}
+        {trackData.map((track, idx) => <Illust track={track} key={`illust-${idx + 1}`} />)}
       </Container>
     </Wrap>
   );
