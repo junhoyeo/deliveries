@@ -77,7 +77,12 @@ const AbsoluteLabel = styled.div`
   font-size: 1.3rem;
   font-weight: 500;
   padding: 0.4rem 1.5rem;
-  background-color: rgb(212, 5, 17);
+  background-color: ${({ stateID }) => {
+    if (stateID === 'delivered') {
+      return '#333';
+    }
+    return 'rgb(212, 5, 17)';
+  }};
   color: white;
   box-shadow: 2px 13px 30px -10px rgba(41, 41, 41, 0.3);
 `;
@@ -126,7 +131,7 @@ export default class CardItem extends Component {
         <RightSection>
           <StatusIllust stateID={state.id} />
         </RightSection>
-        <AbsoluteLabel>
+        <AbsoluteLabel stateID={state.id}>
           {state.text}
         </AbsoluteLabel>
       </Container>

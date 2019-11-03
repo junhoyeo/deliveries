@@ -7,7 +7,10 @@ html,
 body,
 div#root {
   margin: 0;
-  height: 100%;
+}
+
+html {
+  background-color: rgb(255, 204, 0);
 }
 
 a {

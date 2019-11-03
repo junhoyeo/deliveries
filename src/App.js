@@ -13,6 +13,16 @@ const deliveryData = [
     carrier: 'kr.cjlogistics',
     track: 626295097001,
   },
+  {
+    name: '얼라이브 멀티 30정',
+    carrier: 'kr.hanjin',
+    track: 415995868536,
+  },
+  {
+    name: '리코스 나쵸칩',
+    carrier: 'kr.cjlogistics',
+    track: 354471090912,
+  },
 ];
 
 function App() {
@@ -21,7 +31,8 @@ function App() {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem 0;
+      padding-top: 0.5rem;
+      padding-bottom: 2rem;
     `;
     const Text = styled.p`
       color: rgba(0, 0, 0, 0.9);
@@ -41,6 +52,7 @@ function App() {
         margin-top: 3px;
       }
     `;
+
     return (
       <Container>
         <Text>
