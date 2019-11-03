@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import useConstant from '../utils/useConstant';
 
@@ -9,6 +11,7 @@ const Item = ({ data: { name = '', time = '' }, type }) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     flex-direction: column;
+    width: 43%;
 
     &:first-child {
       margin-right: 1rem;
@@ -46,7 +49,7 @@ const Item = ({ data: { name = '', time = '' }, type }) => {
       </Row>
       <Row>
         <Field>{{ from: '출발', to: '도착' }[type]}</Field>
-        <Time>{time || '정보 없음'}</Time>
+        <Time>{(time) ? moment(time).format('YYYY.MM.DD, a h:mm') : '정보 없음'}</Time>
       </Row>
     </Container>
   );
@@ -58,7 +61,7 @@ export default function Timeline({ from = {}, to = {} }) {
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.9);
     padding: 0.5rem 0.8rem;
-    width: fit-content;
+    width: 85%;
   `);
 
   const Icon = useConstant(() => styled.img`
