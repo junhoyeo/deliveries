@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Timeline from './Timeline';
+import StatusIllust from './StatusIllust';
 
 const imageContext = require.context('../assets/carriers/', true);
 
@@ -49,8 +50,11 @@ const Track = styled.span`
   font-size: 1.2rem;
   font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
 `;
-const RightSection = styled.span`
+const RightSection = styled.div`
   flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 const AbsoluteLabel = styled.div`
   position: absolute;
@@ -104,8 +108,9 @@ export default class CardItem extends Component {
           </InfoWrap>
           <Timeline from={from} to={to} />
         </LeftSection>
-        {/* <RightSection>
-        </RightSection> */}
+        <RightSection>
+          <StatusIllust stateID={state.id} />
+        </RightSection>
         <AbsoluteLabel>
           {state.text}
         </AbsoluteLabel>
