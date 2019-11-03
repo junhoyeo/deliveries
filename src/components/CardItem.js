@@ -14,11 +14,24 @@ const Container = styled.div`
   border-radius: 8px;
   padding: 1.5rem 1.8rem;
   position: relative;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+const ImageWrap = styled.div`
+  height: auto;
+  width: 5.7rem;
+  margin-right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 0.8rem;
 `;
 const Image = styled.img`
-  height: 2.5rem;
-  width: auto;
-  margin-right: 1.5rem;
+  height: auto;
+  width: 100%;
 `;
 
 const LeftSection = styled.div`
@@ -100,7 +113,9 @@ export default class CardItem extends Component {
       <Container>
         <LeftSection>
           <InfoWrap>
-            <Image src={carrierImg} />
+            <ImageWrap>
+              <Image src={carrierImg} />
+            </ImageWrap>
             <Info>
               <Name>{name}</Name>
               <Track>{track}</Track>
