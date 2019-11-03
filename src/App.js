@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Normalize from 'react-normalize';
+
+import CardItem from './components/CardItem';
+import CardList from './components/CardList';
+import Header from './components/Header';
+import Home from './components/Home';
+
+const deliveryData = [
+  {
+    name: '맥북 케이스',
+    carrier: 'kr.cjlogistics',
+    track: 626295097001,
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Normalize />
+      <Home>
+        <Header />
+        <CardList>
+          {deliveryData.map((delivery, idx) => <CardItem delivery={delivery} key={`delivery-${idx + 1}`} />)}
+        </CardList>
+      </Home>
+    </>
   );
 }
 

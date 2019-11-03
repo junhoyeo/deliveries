@@ -1,0 +1,25 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+html,
+body,
+div#root {
+  margin: 0;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, p {
+  margin: 0;
+  font-weight: normal;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
