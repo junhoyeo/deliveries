@@ -2,7 +2,7 @@ import React from 'react';
 import Normalize from 'react-normalize';
 import styled from 'styled-components';
 
-import CardItem from './components/CardItem';
+import CardContainer from './components/CardContainer';
 import CardList from './components/CardList';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -85,7 +85,7 @@ function App() {
       <Home>
         <Header />
         <CardList>
-          {deliveryData.map((delivery, idx) => <CardItem delivery={delivery} key={`delivery-${idx + 1}`} />)}
+          {deliveryData.map((delivery, idx) => <CardContainer delivery={delivery} key={`delivery-${idx + 1}`} />)}
         </CardList>
         <Footer />
       </Home>

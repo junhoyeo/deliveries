@@ -42,7 +42,8 @@ const LeftSection = styled.div`
   /* align-items: center; */
   /* justify-content: space-between; */
   /* width: -webkit-fill-available; */
-  width: fit-content;
+  /* width: fit-content; */
+  width: 45%;
 `;
 const InfoWrap = styled.div`
   display: flex;
@@ -101,15 +102,30 @@ export default class CardItem extends Component {
   }
 
   componentDidMount() {
-    const { delivery: { carrierID, trackID } } = this.props;
+    const {
+      delivery: { carrierID, trackID },
+      timestamp,
+      storedData,
+      updateTimestamp,
+    } = this.props;
 
-    getTrack(carrierID, trackID)
-      .then((res) => {
-        const { data } = res;
-        this.setState({
-          delivery: data,
+    const prevTimestamp = new Date().getTime() - 3600000;
+    if (timestamp < prevTimestamp) {
+      // update
+      getTrack(carrierID, trackID)
+        .then((res) => {
+          const { data } = res;
+          this.setState({
+            delivery: data,
+          });
+          updateTimestamp(trackID, data);
         });
+    } else {
+      // TODO: Check if storedData has property trackID, update if not
+      this.setState({
+        delivery: storedData[trackID],
       });
+    }
   }
 
   render() {
