@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import './styles/Index.css';
-import App from './App';
+import AppContainer from './AppContainer';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -16,7 +16,7 @@ const { store, persistor } = configureStore();
 const Root = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <AppContainer />
     </PersistGate>
   </Provider>
 );
