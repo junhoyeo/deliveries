@@ -155,8 +155,14 @@ export default class CardItem extends Component {
     }
   }
 
-  onClickDeleteTrack(trackID) {
-    console.log(trackID);
+  onClickDeleteTrack() {
+    const {
+      delivery: {
+        trackID,
+      },
+      deleteTrack,
+    } = this.props;
+    deleteTrack(trackID);
   }
 
   render() {
@@ -183,7 +189,7 @@ export default class CardItem extends Component {
         <AbsoluteLabel stateID={state.id}>
           {state.text}
         </AbsoluteLabel>
-        <AbsoluteButton onClick={() => this.onClickDeleteTrack(trackID)}>
+        <AbsoluteButton onClick={this.onClickDeleteTrack}>
           <Icon src={TimesIcon} />
         </AbsoluteButton>
       </Container>
