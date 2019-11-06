@@ -6,6 +6,8 @@ import StatusIllust from './StatusIllust';
 
 import getTrack from '../utils/getTrack';
 
+import TimesIcon from '../assets/icons/times-solid.png';
+
 const imageContext = require.context('../assets/carriers/', true);
 
 const Container = styled.div`
@@ -80,14 +82,37 @@ const AbsoluteLabel = styled.div`
   font-size: 1.3rem;
   font-weight: 500;
   padding: 0.4rem 1.5rem;
-  background-color: ${({ stateID }) => {
-    if (stateID === 'delivered') {
-      return '#333';
-    }
-    return 'rgb(212, 5, 17)';
-  }};
+  background-color: ${({ stateID }) => (
+    stateID === 'delivered' ? '#333' : 'rgb(212, 5, 17)'
+  )};
   color: white;
   box-shadow: 2px 13px 30px -10px rgba(41, 41, 41, 0.3);
+`;
+const AbsoluteButton = styled.button`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 0.3rem;
+  background-color: #f1f3f5;
+  border: 0.5px solid #dee2e6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+
+  &:focus {
+    border-color: #ced4da;
+  }
+`;
+const Icon = styled.img`
+  height: 0.6rem;
+  width: 0.6rem;
 `;
 
 export default class CardItem extends Component {
@@ -99,6 +124,8 @@ export default class CardItem extends Component {
         state: { text: '' },
       },
     };
+
+    this.onClickDeleteTrack = this.onClickDeleteTrack.bind(this);
   }
 
   componentDidMount() {
@@ -128,6 +155,10 @@ export default class CardItem extends Component {
     }
   }
 
+  onClickDeleteTrack(trackID) {
+    console.log(trackID);
+  }
+
   render() {
     const { delivery: { name, carrierID, trackID } } = this.props;
     const { delivery: { from, to, state } } = this.state;
@@ -152,6 +183,9 @@ export default class CardItem extends Component {
         <AbsoluteLabel stateID={state.id}>
           {state.text}
         </AbsoluteLabel>
+        <AbsoluteButton onClick={() => this.onClickDeleteTrack(trackID)}>
+          <Icon src={TimesIcon} />
+        </AbsoluteButton>
       </Container>
     );
   }

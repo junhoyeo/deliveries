@@ -17,10 +17,6 @@ export default function Button({ onClick }) {
     &:hover {
       background-color: rgba(0, 0, 0, 0.2);
     }
-
-    &:focus {
-      outline: 0;
-    }
   `);
   const Text = useConstant(() => styled.span`
     color: rgba(255, 255, 255, 0.8);

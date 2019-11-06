@@ -55,7 +55,6 @@ const Input = styled.input`
   min-width: 16rem;
 
   &:focus {
-    outline: 0;
     border-color: #FFCC00;
   }
 `;
@@ -68,7 +67,6 @@ const Button = styled.button`
   transition: background-color 0.2s ease-out;
 
   &:focus {
-    outline: 0;
     background-color: rgb(0, 0, 0);
   }
 `;

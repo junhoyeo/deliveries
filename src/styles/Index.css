@@ -17,7 +17,9 @@ a {
   text-decoration: none;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin: 0;
   font-weight: normal;
 }
@@ -25,4 +27,9 @@ h1, h2, p {
 ul {
   margin: 0;
   padding: 0;
+}
+
+input:focus,
+button:focus {
+  outline: 0;
 }
