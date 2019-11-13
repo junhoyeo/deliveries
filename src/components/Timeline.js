@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import windowSize from 'react-window-size';
 import moment from 'moment';
 import 'moment/locale/ko';
 
@@ -7,7 +8,7 @@ import useConstant from '../utils/useConstant';
 
 import ArrowIcon from '../assets/icons/long-arrow-alt-right-solid.svg';
 
-const Item = ({ data: { name = '', time = '' }, type }) => {
+const Item = ({ data: { name = '', time = '' }, width, type }) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     flex-direction: column;
@@ -26,6 +27,10 @@ const Item = ({ data: { name = '', time = '' }, type }) => {
 
     &:last-child {
       font-size: 0.85rem;
+
+      @media (max-width: 1200px) {
+        font-size: 0.9rem;
+      }
     }
   `);
   const Field = useConstant(() => styled.span`
@@ -41,6 +46,11 @@ const Item = ({ data: { name = '', time = '' }, type }) => {
   const Time = useConstant(() => styled.span`
     font-weight: 300;
   `);
+  const timeFormat = ((w) => {
+    if (w > 1100 || (w < 820 && w >= 550)) return 'YYYY.MM.DD, a h:mm';
+    return 'YYYY.MM.DD';
+  })(width);
+
   return (
     <Container>
       <Row>
@@ -49,19 +59,28 @@ const Item = ({ data: { name = '', time = '' }, type }) => {
       </Row>
       <Row>
         <Field>{{ from: '출발', to: '도착' }[type]}</Field>
-        <Time>{(time) ? moment(time).format('YYYY.MM.DD, a h:mm') : '정보 없음'}</Time>
+        <Time>{(time) ? moment(time).format(timeFormat) : '정보 없음'}</Time>
       </Row>
     </Container>
   );
 };
 
-export default function Timeline({ from = {}, to = {} }) {
+// eslint-disable-next-line no-unused-vars
+const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, ref) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.9);
     padding: 0.5rem 0.8rem;
-    width: 85%;
+    width: ${(width < 1100) ? 'fit-content' : '85%'};
+
+    @media (max-width: 960px) {
+      margin-bottom: auto;
+    }
+
+    @media (max-width: 820px) {
+      width: -webkit-fill-available;
+    }
   `);
 
   const Icon = useConstant(() => styled.img`
@@ -71,9 +90,11 @@ export default function Timeline({ from = {}, to = {} }) {
 
   return (
     <Container>
-      <Item data={from} type="from" />
+      <Item data={from} type="from" width={width} />
       <Icon src={ArrowIcon} />
-      <Item data={to} type="to" />
+      <Item data={to} type="to" width={width} />
     </Container>
   );
-}
+});
+
+export default windowSize(Timeline);

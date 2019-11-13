@@ -12,6 +12,10 @@ export default function Home({ children }) {
   const Container = useConstant(() => styled.div`
     flex-direction: column;
     width: 80%;
+
+    @media (max-width: 670px) {
+      width: 90%;
+    }
   `);
 
   return (

@@ -20,6 +20,18 @@ export default function StatusIllust({ stateID }) {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    @media (max-width: 1200px) {
+      width: 90%;
+    }
+
+    @media (max-width: 1080px) {
+      width: 95%;
+    }
+
+    @media (max-width: 1010px) {
+      width: 100%;
+    }
   `);
   function Illust({ track }) {
     const IllustWrap = useConstant(() => styled.div`
@@ -35,19 +47,68 @@ export default function StatusIllust({ stateID }) {
       }
 
       &:nth-child(2) img {
-        height: 3.7rem;
+        height: 3.9rem;
       }
 
       &:nth-child(3) img {
         height: 4.5rem;
       }
 
-      &:nth-child(4) img {
-        height: 3.9rem;
+      &:nth-child(4) img,
+      &:nth-child(5) img {
+        height: 4rem;
       }
 
-      &:nth-child(5) img {
-        height: 3.9rem;
+      @media (max-width: 960px) {
+        height: 6.2rem;
+      }
+
+      @media (max-width: 670px) {
+        height: 5rem;
+
+        img {
+          height: 3.2rem;
+        }
+
+        &:nth-child(2) img {
+          height: 3.3rem;
+        }
+
+        &:nth-child(3) img {
+          height: 3.7rem;
+        }
+
+        &:nth-child(4) img {
+          height: 3.4rem;
+        }
+
+        &:nth-child(5) img {
+          height: 3.1rem;
+        }
+      }
+
+      @media (max-width: 560px) {
+        height: 4.5rem;
+
+        img {
+          height: 2.9rem;
+        }
+
+        &:nth-child(2) img {
+          height: 2.9rem;
+        }
+
+        &:nth-child(3) img {
+          height: 3.4rem;
+        }
+
+        &:nth-child(4) img {
+          height: 3.1rem;
+        }
+
+        &:nth-child(5) img {
+          height: 2.9rem;
+        }
       }
     `);
     const Image = useConstant(() => styled.img`
@@ -58,6 +119,19 @@ export default function StatusIllust({ stateID }) {
       font-size: 0.9rem;
       font-weight: 700;
       color: ${stateID === track.id ? 'rgb(212, 5, 17)' : 'rgba(0, 0, 0, 0.9)'};
+
+      @media (max-width: 960px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 670px) {
+        margin-top: 0;
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+      }
     `);
     const IllustCtx = (trackStates.indexOf(stateID) >= trackStates.indexOf(track.id))
       ? illustColorCtx : illustDefaultCtx;

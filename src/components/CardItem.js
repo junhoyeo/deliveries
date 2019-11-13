@@ -23,6 +23,14 @@ const Container = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 500px) {
+    padding: 1rem 0.8rem;
+  }
 `;
 const ImageWrap = styled.div`
   height: auto;
@@ -41,14 +49,26 @@ const Image = styled.img`
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: space-between; */
-  /* width: -webkit-fill-available; */
-  /* width: fit-content; */
   width: 45%;
+
+  @media (max-width: 960px) {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+
+  @media (max-width: 820px) {
+    flex-direction: column;
+  }
 `;
 const InfoWrap = styled.div`
   display: flex;
+
+  @media (max-width: 820px) {
+    width: -webkit-fill-available;
+  }
 `;
 const Info = styled.div`
   display: flex;
@@ -87,6 +107,13 @@ const AbsoluteLabel = styled.div`
   )};
   color: white;
   box-shadow: 2px 13px 30px -10px rgba(41, 41, 41, 0.3);
+
+  @media (max-width: 400px) {
+    top: 0.8rem;
+    right: -1.8rem;
+    transform: rotate(29deg);
+    font-size: 1.1rem;
+  }
 `;
 const AbsoluteButton = styled.button`
   position: absolute;
