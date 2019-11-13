@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Normalize from 'react-normalize';
 import Modal from 'react-modal';
+import Dropdown from 'react-dropdown';
 
 import CardButton from './components/CardButton';
 import CardContainer from './components/CardContainer';
@@ -9,6 +10,10 @@ import CardList from './components/CardList';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
+
+import dropdownOptions from './data/carriers.json';
+import 'react-dropdown/style.css';
+import './styles/Dropdown.scss';
 
 Modal.setAppElement('#root');
 
@@ -22,6 +27,7 @@ const ModalStyles = {
   content: {
     width: 'fit-content',
     position: 'unset',
+    overflow: 'unset',
   },
 };
 
@@ -81,11 +87,13 @@ export default class App extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
   onClickAddTrack() {
     const { addTrack } = this.props;
     const { name, trackID, carrierID } = this.state;
+    if (!name || !trackID || !carrierID) return;
     addTrack({
       name,
       trackID,
@@ -109,6 +117,12 @@ export default class App extends Component {
 
     this.setState({
       [name]: value,
+    });
+  }
+
+  handleDropdownChange(selected) {
+    this.setState({
+      carrierID: selected.value,
     });
   }
 
@@ -157,11 +171,12 @@ export default class App extends Component {
               </Row>
               <Row>
                 <Field>택배사 이름</Field>
-                <Input
+                <Dropdown
                   name="carrierID"
                   value={carrierID}
-                  onChange={this.handleChange}
+                  onChange={this.handleDropdownChange}
                   placeholder="어떤 회사에서 배송하고 있나요?"
+                  options={dropdownOptions}
                 />
               </Row>
               <Button onClick={this.onClickAddTrack}>추가하기</Button>

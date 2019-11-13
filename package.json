@@ -5,8 +5,10 @@
   "dependencies": {
     "axios": "^0.19.0",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-dropdown": "^1.6.4",
     "react-modal": "^3.11.1",
     "react-normalize": "^0.4.3",
     "react-redux": "^7.1.1",

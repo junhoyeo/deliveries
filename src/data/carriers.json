@@ -1,0 +1,11 @@
+[
+  { "label": "DHL", "value": "de.dhl" },
+  { "label": "천일택배", "value": "kr.chunilps" },
+  { "label": "CJ대한통운", "value": "kr.cjlogistics" },
+  { "label": "CU 편의점택배", "value": "kr.cupost" },
+  { "label": "GS Postbox 택배", "value": "kr.cvsnet" },
+  { "label": "우체국 택배", "value": "kr.epost" },
+  { "label": "한진택배", "value": "kr.hanjin" },
+  { "label": "로젠택배", "value": "kr.logen" },
+  { "label": "롯데택배", "value": "kr.lotte" }
+]
