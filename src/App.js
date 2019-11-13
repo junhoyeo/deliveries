@@ -68,6 +68,7 @@ const Input = styled.input`
   }
 `;
 const Button = styled.button`
+  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.85);
   color: #fff;
   font-weight: 700;
