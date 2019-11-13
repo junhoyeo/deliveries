@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Normalize from 'react-normalize';
 import Modal from 'react-modal';
 import Dropdown from 'react-dropdown';
+import Swal from 'sweetalert2';
 
 import CardButton from './components/CardButton';
 import CardContainer from './components/CardContainer';
@@ -10,6 +11,8 @@ import CardList from './components/CardList';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
+
+import updateTrack from './utils/updateTrack';
 
 import dropdownOptions from './data/carriers.json';
 import 'react-dropdown/style.css';
@@ -90,15 +93,25 @@ export default class App extends Component {
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
-  onClickAddTrack() {
-    const { addTrack } = this.props;
+  async onClickAddTrack() {
+    const { addTrack, updateTimestamp } = this.props;
     const { name, trackID, carrierID } = this.state;
-    if (!name || !trackID || !carrierID) return;
-    addTrack({
-      name,
-      trackID,
-      carrierID,
-    });
+    if (!name || !trackID || !carrierID) {
+      Swal.fire('이런!', '모든 항목을 입력하셨나요?', 'error');
+      return;
+    }
+    try {
+      await updateTrack({ name, trackID, carrierID }, updateTimestamp);
+      addTrack({
+        name,
+        trackID,
+        carrierID,
+      });
+      this.closeModal();
+    } catch (error) {
+      const { response: { data: { message } } } = error;
+      Swal.fire('이런!', message, 'error');
+    }
   }
 
   openModal() {
@@ -167,6 +180,7 @@ export default class App extends Component {
                   value={trackID}
                   onChange={this.handleChange}
                   placeholder="숫자로만 이루어져 있어요"
+                  type="number"
                 />
               </Row>
               <Row>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Timeline from './Timeline';
 import StatusIllust from './StatusIllust';
 
-import getTrack from '../utils/getTrack';
+import updateTrack from '../utils/updateTrack';
 
 import TimesIcon from '../assets/icons/times-solid.png';
 
@@ -152,7 +152,7 @@ export default class CardItem extends Component {
       },
     };
 
-    this.updateTrack = this.updateTrack.bind(this);
+    this.updateTrackData = this.updateTrackData.bind(this);
     this.onUpdateTrack = this.onUpdateTrack.bind(this);
     this.onClickDeleteTrack = this.onClickDeleteTrack.bind(this);
   }
@@ -171,12 +171,12 @@ export default class CardItem extends Component {
     const prevTimestamp = new Date().getTime() - 3600000;
     if (timestamp < prevTimestamp) {
       // update
-      this.updateTrack();
+      this.updateTrackData();
     } else if (trackID in storedData) {
       this.setState({
         delivery: storedData[trackID],
       });
-    } else this.updateTrack(); // newly created track
+    } else this.updateTrackData(); // newly created track
   }
 
   onClickDeleteTrack() {
@@ -189,20 +189,12 @@ export default class CardItem extends Component {
     deleteTrack(trackID);
   }
 
-  updateTrack() {
-    const {
-      delivery: { carrierID, trackID },
-      updateTimestamp,
-    } = this.props;
-
-    getTrack(carrierID, trackID)
-      .then((res) => {
-        const { data } = res;
-        this.setState({
-          delivery: data,
-        });
-        updateTimestamp(trackID, data);
-      });
+  async updateTrackData() {
+    const { delivery, updateTimestamp } = this.props;
+    const { data } = await updateTrack(delivery, updateTimestamp);
+    this.setState({
+      delivery: data,
+    });
   }
 
   render() {

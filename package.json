@@ -17,7 +17,8 @@
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "sweetalert2": "^9.3.4"
   },
   "scripts": {
     "start": "react-scripts start",
