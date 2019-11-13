@@ -152,6 +152,7 @@ export default class CardItem extends Component {
       },
     };
 
+    this.updateTrack = this.updateTrack.bind(this);
     this.onUpdateTrack = this.onUpdateTrack.bind(this);
     this.onClickDeleteTrack = this.onClickDeleteTrack.bind(this);
   }
@@ -162,29 +163,20 @@ export default class CardItem extends Component {
 
   onUpdateTrack() {
     const {
-      delivery: { carrierID, trackID },
+      delivery: { trackID },
       timestamp,
       storedData,
-      updateTimestamp,
     } = this.props;
 
     const prevTimestamp = new Date().getTime() - 3600000;
     if (timestamp < prevTimestamp) {
       // update
-      getTrack(carrierID, trackID)
-        .then((res) => {
-          const { data } = res;
-          this.setState({
-            delivery: data,
-          });
-          updateTimestamp(trackID, data);
-        });
-    } else {
-      // TODO: Check if storedData has property trackID, update if not
+      this.updateTrack();
+    } else if (trackID in storedData) {
       this.setState({
         delivery: storedData[trackID],
       });
-    }
+    } else this.updateTrack(); // newly created track
   }
 
   onClickDeleteTrack() {
@@ -195,6 +187,22 @@ export default class CardItem extends Component {
       deleteTrack,
     } = this.props;
     deleteTrack(trackID);
+  }
+
+  updateTrack() {
+    const {
+      delivery: { carrierID, trackID },
+      updateTimestamp,
+    } = this.props;
+
+    getTrack(carrierID, trackID)
+      .then((res) => {
+        const { data } = res;
+        this.setState({
+          delivery: data,
+        });
+        updateTimestamp(trackID, data);
+      });
   }
 
   render() {
