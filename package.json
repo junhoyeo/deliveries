@@ -10,6 +10,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-dropdown": "^1.6.4",
+    "react-ga": "^2.7.0",
     "react-modal": "^3.11.1",
     "react-normalize": "^0.4.3",
     "react-redux": "^7.1.1",

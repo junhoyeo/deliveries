@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 import styled from 'styled-components';
 import Normalize from 'react-normalize';
 import Modal from 'react-modal';
@@ -17,6 +18,9 @@ import updateTrack from './utils/updateTrack';
 import dropdownOptions from './data/carriers.json';
 import 'react-dropdown/style.css';
 import './styles/Dropdown.scss';
+
+ReactGA.initialize('UA-152536759-1');
+ReactGA.pageview(window.location.pathname);
 
 Modal.setAppElement('#root');
 
