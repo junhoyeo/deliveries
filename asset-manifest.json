@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b45ac338.chunk.css",
+    "main.js": "/static/js/main.205fdedc.chunk.js",
+    "main.js.map": "/static/js/main.205fdedc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e5bcb798.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e5bcb798.js.map",
+    "static/css/2.d58fcd6a.chunk.css": "/static/css/2.d58fcd6a.chunk.css",
+    "static/js/2.06131725.chunk.js": "/static/js/2.06131725.chunk.js",
+    "static/js/2.06131725.chunk.js.map": "/static/js/2.06131725.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f28f79214ed80347625295b327de02f2.js": "/precache-manifest.f28f79214ed80347625295b327de02f2.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d58fcd6a.chunk.css.map": "/static/css/2.d58fcd6a.chunk.css.map",
+    "static/css/main.b45ac338.chunk.css.map": "/static/css/main.b45ac338.chunk.css.map",
+    "static/media/box.svg": "/static/media/box.be45bdbd.svg",
+    "static/media/kr.cjlogistics.png": "/static/media/kr.cjlogistics.9c7ae793.png",
+    "static/media/kr.epost.png": "/static/media/kr.epost.e1a8b245.png",
+    "static/media/kr.hanjin.png": "/static/media/kr.hanjin.447c51bb.png",
+    "static/media/long-arrow-alt-right-solid.svg": "/static/media/long-arrow-alt-right-solid.99b11dbb.svg",
+    "static/media/package.svg": "/static/media/package.67db011d.svg",
+    "static/media/scooter.svg": "/static/media/scooter.ed437332.svg",
+    "static/media/trolley.svg": "/static/media/trolley.f514ed26.svg",
+    "static/media/truck.svg": "/static/media/truck.892230d1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e5bcb798.js",
+    "static/css/2.d58fcd6a.chunk.css",
+    "static/js/2.06131725.chunk.js",
+    "static/css/main.b45ac338.chunk.css",
+    "static/js/main.205fdedc.chunk.js"
+  ]
+}
