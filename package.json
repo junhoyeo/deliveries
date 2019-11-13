@@ -13,6 +13,7 @@
     "react-normalize": "^0.4.3",
     "react-redux": "^7.1.1",
     "react-scripts": "3.2.0",
+    "react-tooltip": "^3.11.1",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",

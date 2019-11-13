@@ -207,7 +207,14 @@ export default class CardItem extends Component {
 
   render() {
     const { delivery: { name, carrierID, trackID } } = this.props;
-    const { delivery: { from, to, state } } = this.state;
+    const {
+      delivery: {
+        from,
+        to,
+        state,
+        progresses,
+      },
+    } = this.state;
     const carrierImg = imageContext(`./${carrierID}.png`);
     return (
       <Container>
@@ -224,7 +231,7 @@ export default class CardItem extends Component {
           <Timeline from={from} to={to} />
         </LeftSection>
         <RightSection>
-          <StatusIllust stateID={state.id} />
+          <StatusIllust stateID={state.id} progresses={progresses} />
         </RightSection>
         <AbsoluteLabel stateID={state.id}>
           {state.text}

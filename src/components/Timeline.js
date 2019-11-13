@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import windowSize from 'react-window-size';
 import moment from 'moment';
@@ -13,6 +14,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
     display: flex;
     flex-direction: column;
     width: 43%;
+    cursor: help;
 
     &:first-child {
       margin-right: 1rem;
@@ -46,20 +48,23 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
   const Time = useConstant(() => styled.span`
     font-weight: 300;
   `);
+  const currentTime = moment(time);
   const timeFormat = ((w) => {
     if (w > 1100 || (w < 820 && w >= 550)) return 'YYYY.MM.DD, a h:mm';
     return 'YYYY.MM.DD';
   })(width);
 
   return (
-    <Container>
+    <Container data-tip={currentTime.format('YYYY년 MM월 DD일, HH시 mm분')}>
       <Row>
         <Field>{type}</Field>
         <Name>{name}</Name>
       </Row>
       <Row>
         <Field>{{ from: '출발', to: '도착' }[type]}</Field>
-        <Time>{(time) ? moment(time).format(timeFormat) : '정보 없음'}</Time>
+        <Time>
+          {(time) ? currentTime.format(timeFormat) : '정보 없음'}
+        </Time>
       </Row>
     </Container>
   );
@@ -93,6 +98,7 @@ const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, r
       <Item data={from} type="from" width={width} />
       <Icon src={ArrowIcon} />
       <Item data={to} type="to" width={width} />
+      <ReactTooltip multiline />
     </Container>
   );
 });

@@ -1,5 +1,8 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 import useConstant from '../utils/useConstant';
 
@@ -9,7 +12,16 @@ const illustDefaultCtx = require.context('../assets/illusts/defaults', true);
 const illustColorCtx = require.context('../assets/illusts/colors', true);
 const trackStates = trackData.map((track) => track.id);
 
-export default function StatusIllust({ stateID }) {
+function getProgressTootip(stateID, progresses) {
+  try {
+    const { description, time } = progresses.reverse().find((p) => p.status.id === stateID);
+    return `${description}<br />${moment(time).format('YYYY년 MM월 DD일, HH시 mm분')}`;
+  } catch (_) {
+    return '데이터가 없습니다.';
+  }
+}
+
+export default function StatusIllust({ stateID, progresses }) {
   const Wrap = useConstant(() => styled.div`
     display: flex;
     justify-content: center;
@@ -41,6 +53,7 @@ export default function StatusIllust({ stateID }) {
       align-items: center;
       justify-content: space-between;
       height: 6rem;
+      cursor: help;
 
       img {
         height: 4rem;
@@ -138,9 +151,10 @@ export default function StatusIllust({ stateID }) {
     const IllustImg = IllustCtx(`./${track.illust}.svg`);
 
     return (
-      <IllustWrap>
+      <IllustWrap data-tip={getProgressTootip(track.id, progresses)}>
         <Image src={IllustImg} />
         <Text>{track.text}</Text>
+        <ReactTooltip multiline />
       </IllustWrap>
     );
   }
