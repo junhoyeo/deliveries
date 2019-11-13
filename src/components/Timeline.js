@@ -15,13 +15,11 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
     flex-direction: column;
     width: 43%;
     cursor: help;
+    margin-left: 0.8rem;
 
     &:first-child {
-      margin-right: 1rem;
-    }
-
-    &:last-child {
-      margin-left: 1rem;
+      margin-left: 0;
+      margin-right: 0.8rem;
     }
   `);
   const Row = useConstant(() => styled.div`
@@ -77,9 +75,15 @@ const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, r
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.9);
     padding: 0.5rem 0.8rem;
-    width: ${(width < 1100) ? 'fit-content' : '85%'};
+    width: 85%;
+    justify-content: space-between;
+
+    @media (max-width: 1100px) {
+      width: 85%;
+    }
 
     @media (max-width: 960px) {
+      width: 50%;
       margin-bottom: auto;
     }
 

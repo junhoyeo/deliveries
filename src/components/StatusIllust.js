@@ -30,7 +30,7 @@ export default function StatusIllust({ stateID, progresses }) {
   const Container = useConstant(() => styled.div`
     width: 85%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     @media (max-width: 1200px) {
