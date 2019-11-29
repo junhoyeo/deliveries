@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
 
-import cataloger from './cataloger.reducer';
-import updater from './updater.reducer';
+import cataloger, { ICatalogerState } from './cataloger.reducer';
+import updater, { IUpdaterState } from './updater.reducer';
+
+export interface IReducerState {
+  cataloger: ICatalogerState;
+  updater: IUpdaterState;
+}
 
 const rootReducer = combineReducers({
   cataloger,

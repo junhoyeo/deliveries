@@ -9,7 +9,16 @@ import useConstant from '../utils/useConstant';
 
 import ArrowIcon from '../assets/icons/long-arrow-alt-right-solid.svg';
 
-const Item = ({ data: { name = '', time = '' }, width, type }) => {
+interface IItem {
+  data: {
+    name: string;
+    time: string;
+  };
+  width: number;
+  type: string;
+}
+
+const Item = ({ data: { name = '', time = '' }, width, type }: IItem) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     flex-direction: column;
@@ -59,7 +68,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
         <Name>{name}</Name>
       </Row>
       <Row>
-        <Field>{{ from: '출발', to: '도착' }[type]}</Field>
+        <Field>{['출발', '도착'][Number(type === 'to')]}</Field>
         <Time>
           {(time) ? currentTime.format(timeFormat) : '정보 없음'}
         </Time>
@@ -69,7 +78,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, ref) => {
+const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }: any, _) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     align-items: center;

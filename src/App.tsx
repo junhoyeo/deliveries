@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
+import Dropdown, { Option } from 'react-dropdown';
 import ReactGA from 'react-ga';
 import Modal from 'react-modal';
 import Normalize from 'react-normalize';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import Swal from 'sweetalert2';
 
 import CardButton from './components/CardButton';
@@ -16,8 +16,10 @@ import Home from './components/Home';
 import updateTrack from './utils/updateTrack';
 
 import dropdownOptions from './data/carriers.json';
+
 import 'react-dropdown/style.css';
 import './styles/Dropdown.scss';
+import { ITrack } from './utils/interfaces';
 
 ReactGA.initialize('UA-152536759-1');
 ReactGA.pageview(window.location.pathname);
@@ -85,6 +87,7 @@ interface IAddTrackProps {
 }
 
 interface IAppProps {
+  tracks: ITrack[];
   addTrack: (props: IAddTrackProps) => void;
   updateTimestamp: () => {};
 }
@@ -102,7 +105,6 @@ const defaultState: IAppState = {
   name: '',
   trackID: '',
 };
-
 
 export default class App extends Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -125,11 +127,11 @@ export default class App extends Component<IAppProps, IAppState> {
       return;
     }
     try {
-      await updateTrack({ name, trackID, carrierID }, updateTimestamp);
+      await updateTrack({ carrierID, name, trackID } as ITrack, updateTimestamp);
       addTrack({
+        carrierID,
         name,
         trackID,
-        carrierID,
       });
       this.closeModal();
     } catch (error) {
@@ -154,10 +156,10 @@ export default class App extends Component<IAppProps, IAppState> {
 
     this.setState({
       [name]: value,
-    });
+    } as any);
   }
 
-  public handleDropdownChange(selected) {
+  public handleDropdownChange(selected: Option) {
     this.setState({
       carrierID: selected.value,
     });
@@ -178,7 +180,8 @@ export default class App extends Component<IAppProps, IAppState> {
         <Home>
           <Header />
           <CardList>
-            {tracks.map((delivery, idx) => <CardContainer delivery={delivery} key={`delivery-${idx + 1}`} />)}
+            {tracks.map((delivery: ITrack, idx: number) =>
+              <CardContainer delivery={delivery} key={`delivery-${idx + 1}`} />)}
             <CardButton onClick={this.openModal} />
           </CardList>
           <Footer />
@@ -209,8 +212,9 @@ export default class App extends Component<IAppProps, IAppState> {
               </Row>
               <Row>
                 <Field>택배사 이름</Field>
-                <Dropdown
-                  name="carrierID"
+                {/*
+                // @ts-ignore */}
+                <Dropdown name="carrierID"
                   value={carrierID}
                   onChange={this.handleDropdownChange}
                   placeholder="어떤 회사에서 배송하고 있나요?"

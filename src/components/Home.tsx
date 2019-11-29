@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
-export default function Home({ children }) {
+interface IHomeProps {
+  children: React.ReactNode;
+}
+
+export default function Home({ children }: IHomeProps) {
   const Wrap = useConstant(() => styled.div`
     display: flex;
     justify-content: center;

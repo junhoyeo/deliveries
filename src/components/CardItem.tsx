@@ -7,6 +7,8 @@ import Timeline from './Timeline';
 import updateTrack from '../utils/updateTrack';
 
 import TimesIcon from '../assets/icons/times-solid.png';
+import { IStoredData } from '../reducers/updater.reducer';
+import { ITrack } from '../utils/interfaces';
 
 const imageContext = require.context('../assets/carriers/', true);
 
@@ -102,7 +104,7 @@ const AbsoluteLabel = styled.div`
   font-size: 1.3rem;
   font-weight: 500;
   padding: 0.4rem 1.5rem;
-  background-color: ${({ stateID }) => (
+  background-color: ${({ stateID }: { stateID: string }) => (
     stateID === 'delivered' ? '#333' : 'rgb(212, 5, 17)'
   )};
   color: white;
@@ -142,13 +144,26 @@ const Icon = styled.img`
   width: 0.6rem;
 `;
 
-export default class CardItem extends Component {
-  constructor(props) {
+interface ICardProps {
+  delivery: ITrack;
+  timestamp?: number;
+  storedData?: IStoredData;
+  deleteTrack?: (trackID: string) => void;
+  updateTimestamp?: () => void;
+}
+
+interface ICardState {
+  delivery: ITrack;
+}
+
+export default class CardItem extends Component<ICardProps, ICardState> {
+  constructor(props: ICardProps) {
     super(props);
 
     this.state = {
       delivery: {
-        state: { text: '' },
+        state: { id: '', text: '' },
+        trackID: '',
       },
     };
 

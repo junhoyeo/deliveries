@@ -1,13 +1,25 @@
+import { IAction, ITrack } from '../utils/interfaces';
+
 const UPDATE = 'UPDATE';
 
-export const update = (trackID, trackData) => ({ trackID, trackData, type: UPDATE });
+export const update = (trackID: string, trackData: ITrack) =>
+  ({ trackID, trackData, type: UPDATE });
 
-const defaultState = {
+export interface IStoredData {
+  [trackID: string]: ITrack;
+}
+
+export interface IUpdaterState {
+  data: IStoredData;
+  timestamp: number;
+}
+
+const defaultState: IUpdaterState = {
   data: {},
   timestamp: new Date(-8640000000000000).getTime(),
 };
 
-export default function updater(state = defaultState, action) {
+export default function updater(state = defaultState, action: IAction): IUpdaterState {
   switch (action.type) {
     case UPDATE: {
       const { trackID, trackData } = action;
