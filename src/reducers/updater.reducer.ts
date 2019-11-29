@@ -1,10 +1,10 @@
 const UPDATE = 'UPDATE';
 
-export const update = (trackID, trackData) => ({ type: UPDATE, trackID, trackData });
+export const update = (trackID, trackData) => ({ trackID, trackData, type: UPDATE });
 
 const defaultState = {
-  timestamp: new Date(-8640000000000000).getTime(),
   data: {},
+  timestamp: new Date(-8640000000000000).getTime(),
 };
 
 export default function updater(state = defaultState, action) {
@@ -14,11 +14,11 @@ export default function updater(state = defaultState, action) {
       const { data: prevData } = state;
       return {
         ...state,
-        timestamp: new Date().getTime(),
         data: {
           ...prevData,
           [trackID]: trackData,
         },
+        timestamp: new Date().getTime(),
       };
     }
     default:

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga';
-import styled from 'styled-components';
-import Normalize from 'react-normalize';
-import Modal from 'react-modal';
 import Dropdown from 'react-dropdown';
+import ReactGA from 'react-ga';
+import Modal from 'react-modal';
+import Normalize from 'react-normalize';
+import styled, { StyledComponent } from 'styled-components';
 import Swal from 'sweetalert2';
 
 import CardButton from './components/CardButton';
@@ -24,25 +24,18 @@ ReactGA.pageview(window.location.pathname);
 
 Modal.setAppElement('#root');
 
-const ModalStyles = {
+const ModalStyles: object = {
+  content: {
+    overflow: 'unset',
+    position: 'unset',
+    width: 'fit-content',
+  },
   overlay: {
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
   },
-  content: {
-    width: 'fit-content',
-    position: 'unset',
-    overflow: 'unset',
-  },
-};
-
-const defaultState = {
-  isModalOpen: false,
-  name: '',
-  carrierID: '',
-  trackID: '',
 };
 
 const Container = styled.div`
@@ -85,8 +78,34 @@ const Button = styled.button`
   }
 `;
 
-export default class App extends Component {
-  constructor(props) {
+interface IAddTrackProps {
+  name: string;
+  trackID: string;
+  carrierID: string;
+}
+
+interface IAppProps {
+  addTrack: (props: IAddTrackProps) => void;
+  updateTimestamp: () => {};
+}
+
+interface IAppState {
+  name: string;
+  trackID: string;
+  carrierID: string;
+  isModalOpen: boolean;
+}
+
+const defaultState: IAppState = {
+  carrierID: '',
+  isModalOpen: false,
+  name: '',
+  trackID: '',
+};
+
+
+export default class App extends Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
     super(props);
 
     this.state = defaultState;
@@ -98,7 +117,7 @@ export default class App extends Component {
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
-  async onClickAddTrack() {
+  public async onClickAddTrack() {
     const { addTrack, updateTimestamp } = this.props;
     const { name, trackID, carrierID } = this.state;
     if (!name || !trackID || !carrierID) {
@@ -119,32 +138,32 @@ export default class App extends Component {
     }
   }
 
-  openModal() {
+  public openModal() {
     this.setState({
       isModalOpen: true,
     });
   }
 
-  closeModal() {
+  public closeModal() {
     this.setState(defaultState);
   }
 
-  handleChange(event) {
+  public handleChange(event: React.SyntheticEvent) {
     event.persist();
-    const { target: { value, name } } = event;
+    const { value, name }: { value: string, name: string } = event.target as HTMLInputElement;
 
     this.setState({
       [name]: value,
     });
   }
 
-  handleDropdownChange(selected) {
+  public handleDropdownChange(selected) {
     this.setState({
       carrierID: selected.value,
     });
   }
 
-  render() {
+  public render() {
     const { tracks } = this.props;
     const {
       isModalOpen,

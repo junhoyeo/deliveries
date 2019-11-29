@@ -1,8 +1,8 @@
 const ADD_TRACK = 'ADD_TRACK';
 const DEL_TRACK = 'DEL_TRACK';
 
-export const addition = (trackData) => ({ type: ADD_TRACK, trackData });
-export const deletion = (trackID) => ({ type: DEL_TRACK, trackID });
+export const addition = trackData => ({ trackData, type: ADD_TRACK });
+export const deletion = trackID => ({ trackID, type: DEL_TRACK });
 
 const defaultState = {
   tracks: [],
@@ -21,7 +21,7 @@ export default function cataloger(state = defaultState, action) {
       const { trackID } = action;
       return {
         ...state,
-        tracks: state.tracks.filter((track) => track.trackID !== trackID),
+        tracks: state.tracks.filter(track => track.trackID !== trackID),
       };
     }
     default:

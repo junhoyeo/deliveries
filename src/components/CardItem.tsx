@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Timeline from './Timeline';
 import StatusIllust from './StatusIllust';
+import Timeline from './Timeline';
 
 import updateTrack from '../utils/updateTrack';
 
@@ -157,11 +157,11 @@ export default class CardItem extends Component {
     this.onClickDeleteTrack = this.onClickDeleteTrack.bind(this);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.onUpdateTrack();
   }
 
-  onUpdateTrack() {
+  public onUpdateTrack() {
     const {
       delivery: { trackID },
       timestamp,
@@ -179,7 +179,7 @@ export default class CardItem extends Component {
     } else this.updateTrackData(); // newly created track
   }
 
-  onClickDeleteTrack() {
+  public onClickDeleteTrack() {
     const {
       delivery: {
         trackID,
@@ -189,7 +189,7 @@ export default class CardItem extends Component {
     deleteTrack(trackID);
   }
 
-  async updateTrackData() {
+  public async updateTrackData() {
     const { delivery, updateTimestamp } = this.props;
     const { data } = await updateTrack(delivery, updateTimestamp);
     this.setState({
@@ -197,7 +197,7 @@ export default class CardItem extends Component {
     });
   }
 
-  render() {
+  public render() {
     const { delivery: { name, carrierID, trackID } } = this.props;
     const {
       delivery: {

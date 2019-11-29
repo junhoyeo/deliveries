@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactTooltip from 'react-tooltip';
-import styled from 'styled-components';
-import windowSize from 'react-window-size';
 import moment from 'moment';
 import 'moment/locale/ko';
+import React from 'react';
+import ReactTooltip from 'react-tooltip';
+import windowSize from 'react-window-size';
+import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
@@ -102,7 +102,7 @@ const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, r
       <Item data={from} type="from" width={width} />
       <Icon src={ArrowIcon} />
       <Item data={to} type="to" width={width} />
-      <ReactTooltip multiline />
+      <ReactTooltip multiline={true} />
     </Container>
   );
 });
