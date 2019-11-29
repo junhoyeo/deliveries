@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
-export default function Button({ onClick }) {
+interface IButtonProps {
+  onClick: () => void;
+}
+
+export default function Button({ onClick }: IButtonProps) {
   const ButtonContainer = useConstant(() => styled.button`
     cursor: pointer;
     height: 8rem;

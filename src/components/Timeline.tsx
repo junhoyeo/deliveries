@@ -1,15 +1,24 @@
-import React from 'react';
-import ReactTooltip from 'react-tooltip';
-import styled from 'styled-components';
-import windowSize from 'react-window-size';
 import moment from 'moment';
 import 'moment/locale/ko';
+import React from 'react';
+import ReactTooltip from 'react-tooltip';
+import windowSize from 'react-window-size';
+import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
 import ArrowIcon from '../assets/icons/long-arrow-alt-right-solid.svg';
 
-const Item = ({ data: { name = '', time = '' }, width, type }) => {
+interface IItem {
+  data: {
+    name: string;
+    time: string;
+  };
+  width: number;
+  type: string;
+}
+
+const Item = ({ data: { name = '', time = '' }, width, type }: IItem) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     flex-direction: column;
@@ -59,7 +68,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
         <Name>{name}</Name>
       </Row>
       <Row>
-        <Field>{{ from: '출발', to: '도착' }[type]}</Field>
+        <Field>{['출발', '도착'][Number(type === 'to')]}</Field>
         <Time>
           {(time) ? currentTime.format(timeFormat) : '정보 없음'}
         </Time>
@@ -69,7 +78,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, ref) => {
+const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }: any, _) => {
   const Container = useConstant(() => styled.div`
     display: flex;
     align-items: center;
@@ -102,7 +111,7 @@ const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }, r
       <Item data={from} type="from" width={width} />
       <Icon src={ArrowIcon} />
       <Item data={to} type="to" width={width} />
-      <ReactTooltip multiline />
+      <ReactTooltip multiline={true} />
     </Container>
   );
 });

@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import useConstant from '../utils/useConstant';
 
-export default function CardList({ children }) {
+interface ICardListProps {
+  children: React.ReactNode;
+}
+
+export default function CardList({ children }: ICardListProps) {
   const Container = useConstant(() => styled.div``);
 
   return (

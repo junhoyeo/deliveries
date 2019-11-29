@@ -1,6 +1,13 @@
 {
   "name": "deliveries",
   "version": "0.1.0",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "lint": "tslint src/**/*.{ts,tsx} --fix"
+  },
   "homepage": "https://junhoyeo.github.io/deliveries",
   "private": true,
   "dependencies": {
@@ -22,12 +29,6 @@
     "styled-components": "^4.4.1",
     "sweetalert2": "^9.3.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -44,12 +45,26 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-modal": "^3.10.0",
+    "@types/react-redux": "^7.1.5",
+    "@types/react-tooltip": "^3.11.0",
+    "@types/react-window-size": "^1.2.0",
+    "@types/styled-components": "^4.4.0",
+    "@types/webpack-env": "^1.14.1",
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.7.2"
   }
 }
