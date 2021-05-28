@@ -1,6 +1,5 @@
 *:not(.__react_component_tooltip.type-dark) {
   font-family: 'Noto Sans KR', sans-serif;
-  color: rgba(0, 0, 0, 0.9);
 }
 
 html,
@@ -10,6 +9,7 @@ div#root {
 }
 
 html {
+  color: rgba(0, 0, 0, 0.9);
   background-color: rgb(255, 204, 0);
 }
 
