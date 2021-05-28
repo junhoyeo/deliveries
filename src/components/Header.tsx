@@ -1,23 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import useConstant from '../utils/useConstant';
-
 export default function Header() {
-  const Container = useConstant(() => styled.header`
-    padding: 1.2rem 0rem;
-  `);
-  const Title = useConstant(() => styled.h1`
-    color: rgb(212, 5, 17);
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  `);
-  const Description = useConstant(() => styled.p`
-    color: rgb(212, 5, 17);
-    font-size: 1.1rem;
-    font-weight: 400;
-  `);
   return (
     <Container>
       <Title>당신의 모든 배송</Title>
@@ -25,3 +9,20 @@ export default function Header() {
     </Container>
   );
 }
+
+const Container = styled.header`
+    padding: 1.2rem 0rem;
+  `;
+
+const Title = styled.h1`
+  color: rgb(212, 5, 17);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+`;
+
+const Description = styled.p`
+  color: rgb(212, 5, 17);
+  font-size: 1.1rem;
+  font-weight: 400;
+`;
