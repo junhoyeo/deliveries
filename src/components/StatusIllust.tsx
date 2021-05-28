@@ -78,7 +78,7 @@ function Illust({ status, stateID, progresses }: IIllust) {
 
   return (
     <IllustWrap data-tip={getProgressTootip(status.id, progresses)}>
-      <Image src={IllustImg} />
+      <Image src={IllustImg.default} />
       <Text selected={stateID === status.id}>{status.text}</Text>
       <ReactTooltip multiline />
     </IllustWrap>

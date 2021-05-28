@@ -228,7 +228,7 @@ export default class CardItem extends Component<ICardProps, ICardState> {
         <LeftSection>
           <InfoWrap>
             <ImageWrap>
-              <Image src={carrierImg} />
+              <Image src={carrierImg.default} />
             </ImageWrap>
             <Info>
               <Name>{name}</Name>
