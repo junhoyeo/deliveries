@@ -11,11 +11,11 @@ import trackData from '../data/tracks.json';
 
 const illustDefaultCtx = require.context('../assets/illusts/defaults', true);
 const illustColorCtx = require.context('../assets/illusts/colors', true);
-const trackStates = trackData.map(track => track.id);
+const trackStates = trackData.map((track) => track.id);
 
 function getProgressTootip(stateID: string, progresses: IProgress[]) {
   try {
-    const { description, time } = progresses.reverse().find(p => p.status.id === stateID);
+    const { description, time } = progresses.reverse().find((p) => p.status.id === stateID);
     return `${description}<br />${moment(time).format('YYYY년 MM월 DD일, HH시 mm분')}`;
   } catch (_) {
     return '데이터가 없습니다.';
@@ -160,7 +160,7 @@ export default function StatusIllust({ stateID, progresses }: IStatusIllust) {
       <IllustWrap data-tip={getProgressTootip(status.id, progresses)}>
         <Image src={IllustImg} />
         <Text>{status.text}</Text>
-        <ReactTooltip multiline={true} />
+        <ReactTooltip multiline />
       </IllustWrap>
     );
   }

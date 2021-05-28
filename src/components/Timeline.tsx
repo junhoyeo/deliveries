@@ -77,7 +77,7 @@ const Item = ({ data: { name = '', time = '' }, width, type }: IItem) => {
   );
 };
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }: any, _) => {
   const Container = useConstant(() => styled.div`
     display: flex;
@@ -111,7 +111,7 @@ const Timeline = React.forwardRef(({ windowWidth: width, from = {}, to = {} }: a
       <Item data={from} type="from" width={width} />
       <Icon src={ArrowIcon} />
       <Item data={to} type="to" width={width} />
-      <ReactTooltip multiline={true} />
+      <ReactTooltip multiline />
     </Container>
   );
 });
